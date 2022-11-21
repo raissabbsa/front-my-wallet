@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Login from "./pages/loginPage/Login"
+import Registracion from "./pages/loginPage/Registracion"
+import Today from "./pages/today/Hoje"
+import ResetStyle from "./styles/ResetStyle"
+import NewEntry from "./components/NewEntry"
+import NewOut from "./components/NewOut"
+import UserProvider from "./contexts/TokenContext"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    return (
+        <UserProvider>
+            <BrowserRouter>
+                <ResetStyle />
+                <Routes>
+                    <Route path="/" element={<Login />}></Route>
+                    <Route path="/cadastro" element={<Registracion />}></Route>
+                    <Route path="/hoje" element={<Today />}></Route>
+                    <Route path="/entrada" element={<NewEntry />}></Route>
+                    <Route path="/saida" element={<NewOut />}></Route>
+                </Routes>
+            </BrowserRouter>
+        </UserProvider>
+    )
 }
-
-export default App;
